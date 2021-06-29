@@ -25,3 +25,6 @@ class Server():
                 debug=True,
                 host='0.0.0.0'
             )
+
+
+server = Server()
