@@ -1,4 +1,3 @@
-from logging import debug
 from flask import Flask, Blueprint
 from flask_restplus import Api
 
@@ -15,10 +14,14 @@ class Server():
         self.app.config['PROPAGATE_EXPECTIONS'] = True
         self.app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+        self.books_ns = self.books_ns()
+
+        def books_ns(self,):
+            return self.api.namespace(name='Books', description='book related operations', path='/')
+
         def run(self, ):
             self.app.run(
                 port=5000,
                 debug=True,
                 host='0.0.0.0'
             )
-
