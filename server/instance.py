@@ -1,5 +1,5 @@
 from flask import Flask, Blueprint
-from flask_restplus import Api
+from flask_restx import Api
 
 
 class Server():
@@ -10,21 +10,21 @@ class Server():
                        title='Sample Flask-SQLAlchemy')
         self.app.register_blueprint(self.blueprint)
 
-        self.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////database.db'
+        self.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
         self.app.config['PROPAGATE_EXPECTIONS'] = True
         self.app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
         self.books_ns = self.books_ns()
 
-        def books_ns(self,):
-            return self.api.namespace(name='Books', description='book related operations', path='/')
+    def books_ns(self,):
+        return self.api.namespace(name='Books', description='book related operations', path='/')
 
-        def run(self, ):
-            self.app.run(
-                port=5000,
-                debug=True,
-                host='0.0.0.0'
-            )
+    def run(self, ):
+        self.app.run(
+            port=5000,
+            debug=True,
+            host='0.0.0.0'
+        )
 
 
 server = Server()
