@@ -39,6 +39,13 @@ class Book(Resource):
         book_data.save_to_db()
         return book_schema.dump(book_data), 200
 
+    def delete(self, id):
+        book_data = BookModel.find_by_id(id)
+        if book_data:
+            book_data.delete_from_db()
+            return '', 204
+        return {'message': 'BOOK NOT FOUND'}, 404
+
 
 class BookList(Resource):
 
